@@ -109,7 +109,7 @@ const Home = () => {
 
         {/* 🖥 DESKTOP 3D MODEL ONLY */}
         <div className="hidden md:flex w-1/2 h-[500px] justify-center items-center">
-          <Lanyard position={[0, 0, 10]} gravity={[0, -30, 0]} scale={0.9} />
+          <Lanyard position={[0, 0, 12]} gravity={[0, -30, 0]} scale={0.9} />
         </div>
 
       </div>
