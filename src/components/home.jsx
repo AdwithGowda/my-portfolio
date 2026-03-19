@@ -35,7 +35,7 @@ const Home = () => {
       "
     >
       <div className="w-full max-w-7xl flex flex-col md:flex-row items-center justify-between">
-        
+
         {/* ⭐ TEXT SECTION */}
         <div
           className="
@@ -93,7 +93,7 @@ const Home = () => {
         </div>
 
         {/* 📱 MOBILE PHOTO ONLY */}
-        <div className="md:hidden w-full flex justify-center mt-14">
+        {/* <div className="md:hidden w-full flex justify-center mt-14">
           <img
             src="/profile.jpg"
             alt="Adwith"
@@ -105,7 +105,7 @@ const Home = () => {
               border border-white/10
             "
           />
-        </div>
+        </div> */}
 
         {/* 🖥 DESKTOP 3D MODEL ONLY */}
         <div className="hidden md:flex w-1/2 h-[500px] justify-center items-center">

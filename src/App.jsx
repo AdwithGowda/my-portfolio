@@ -6,6 +6,8 @@ import Home from "./components/home";
 import Skills from "./components/skills";
 import Projects from "./components/projects";
 import Contact from "./components/contact";
+import OrbitingSkills from './components/orbiting-skills';
+import Projects2 from "./components/projects2";
 
 const App = () => {
   return (
@@ -16,13 +18,25 @@ const App = () => {
       </div>
        <div id="abouts">
         <Abouts />
+      <div id="skills" className="min-h-screen flex items-center justify-center bg-slate-950" >
+      <OrbitingSkills />
       </div>
-       <div id="skills">
+      </div>
+       {/* <div id="skills">
         <Skills/> 
+      </div> */}
+      <div id="projects">
+        {/* Mobile view: Original Projects */}
+        <div className="block md:hidden">
+          <Projects />
+        </div>
+        
+        {/* Desktop view: New Projects Layout */}
+        <div className="hidden md:block">
+          <Projects2 />
+        </div>
       </div>
-       <div id="projects">
-        <Projects />
-      </div>
+
       <div id="contact">
         <Contact />
       </div>
