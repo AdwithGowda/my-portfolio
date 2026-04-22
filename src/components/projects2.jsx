@@ -29,22 +29,7 @@ const projects = [
         link: "https://your-project-url-3.com",
         image: "/assets/hostel.png",
     },
-        {
-        id: "04",
-        title: "Hostel Management",
-        subtitle: "Digital Administration",
-        desc: "Created a digital platform to automate hostel administration. Features included room allocation, student records, and task tracking.",
-        link: "https://your-project-url-3.com",
-        image: "/assets/hostel.png",
-    },
-        {
-        id: "05",
-        title: "Hostel Management",
-        subtitle: "Digital Administration",
-        desc: "Created a digital platform to automate hostel administration. Features included room allocation, student records, and task tracking.",
-        link: "https://your-project-url-3.com",
-        image: "/assets/hostel.png",
-    },
+  
 
 ];
 
