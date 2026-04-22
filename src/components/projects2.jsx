@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ChevronUp, ChevronDown } from "lucide-react";
 
 const projects = [
     {
@@ -29,11 +29,38 @@ const projects = [
         link: "https://your-project-url-3.com",
         image: "/assets/hostel.png",
     },
+        {
+        id: "04",
+        title: "Hostel Management",
+        subtitle: "Digital Administration",
+        desc: "Created a digital platform to automate hostel administration. Features included room allocation, student records, and task tracking.",
+        link: "https://your-project-url-3.com",
+        image: "/assets/hostel.png",
+    },
+        {
+        id: "05",
+        title: "Hostel Management",
+        subtitle: "Digital Administration",
+        desc: "Created a digital platform to automate hostel administration. Features included room allocation, student records, and task tracking.",
+        link: "https://your-project-url-3.com",
+        image: "/assets/hostel.png",
+    },
 
 ];
 
 export default function Projects() {
     const [selectedProject, setSelectedProject] = useState(projects[0]);
+    const scrollRef = useRef(null);
+
+    const scroll = (direction) => {
+        if (scrollRef.current) {
+            const scrollAmount = 200;
+            scrollRef.current.scrollBy({
+                top: direction === "up" ? -scrollAmount : scrollAmount,
+                behavior: "smooth"
+            });
+        }
+    };
 
     return (
         <section
@@ -49,59 +76,90 @@ export default function Projects() {
                 <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
 
                     {/* LEFT PANE: Minimal Project List */}
-                    <div className="w-full lg:w-[35%] flex flex-col justify-center gap-8 lg:pr-10 border-r border-white/5">
+                    <div className="w-full lg:w-[35%] flex flex-col justify-center gap-8 lg:pr-10 border-r border-white/5 h-fit lg:min-h-[60vh]">
                         
-                        {/* Section Header */}
-                        <div className="mb-4">
+                        {/* Section Header - Fixed at top of list */}
+                        <div className="mb-4 shrink-0">
                             <h2 className="text-6xl sm:text-7xl lg:text-8xl font-black bg-gradient-to-b from-blue-400 to-transparent bg-clip-text text-transparent tracking-tighter w-fit">
                                 PROJECTS
                             </h2>
                         </div>
-                        {projects.map((project, index) => {
-                            const isActive = selectedProject.id === project.id;
 
-                            return (
-                                <motion.div
-                                    key={project.id}
-                                    initial={{ opacity: 0, x: -30 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: index * 0.1, duration: 0.7, ease: "easeOut" }}
-                                >
-                                    <button
-                                        onClick={() => setSelectedProject(project)}
-                                        className="group w-full text-left relative py-4 flex items-center"
-                                    >
-                                        {/* Active Line Indicator */}
-                                        <div className="w-12 h-px bg-slate-800 mr-6 relative overflow-hidden transition-colors duration-500">
-                                            {isActive && (
-                                                <motion.div
-                                                    layoutId="active-line"
-                                                    className="absolute inset-0 bg-blue-500"
-                                                    initial={false}
-                                                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                                                />
-                                            )}
-                                        </div>
+                        {/* Scrollable Project List - Constrained to ~3 projects */}
+                        <div className="relative flex flex-col items-center">
+                            {/* Up Arrow */}
+                            <motion.button
+                                whileHover={{ scale: 1.2 }}
+                                whileTap={{ scale: 0.9 }}
+                                onClick={() => scroll("up")}
+                                className="mb-2 p-1 text-slate-600 hover:text-blue-500 transition-colors"
+                                aria-label="Scroll Up"
+                            >
+                                <ChevronUp className="w-6 h-6" />
+                            </motion.button>
 
-                                        <div className="flex flex-col flex-1">
-                                            <div className="flex items-center gap-4 mb-1">
-                                                <span className={`font-mono text-sm transition-colors duration-500 ${isActive ? 'text-blue-500' : 'text-slate-600'}`}>
-                                                    {project.id}
-                                                </span>
-                                                <span className={`text-xs uppercase tracking-widest font-semibold transition-colors duration-500 ${isActive ? 'text-slate-400' : 'text-slate-700'}`}>
-                                                    {project.subtitle}
-                                                </span>
-                                            </div>
+                            <div 
+                                ref={scrollRef}
+                                className="flex flex-col gap-2 overflow-y-auto pr-4 custom-scrollbar scroll-smooth max-h-[480px] w-full"
+                            >
+                                {projects.map((project, index) => {
+                                    const isActive = selectedProject.id === project.id;
 
-                                            <h3 className={`text-4xl lg:text-5xl font-bold tracking-tighter transition-all duration-500 ${isActive ? 'text-white translate-x-2' : 'text-slate-500 group-hover:text-slate-300'
-                                                }`}>
-                                                {project.title}
-                                            </h3>
-                                        </div>
-                                    </button>
-                                </motion.div>
-                            );
-                        })}
+                                    return (
+                                        <motion.div
+                                            key={project.id}
+                                            initial={{ opacity: 0, x: -30 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: index * 0.1, duration: 0.7, ease: "easeOut" }}
+                                        >
+                                            <button
+                                                onClick={() => setSelectedProject(project)}
+                                                className="group w-full text-left relative py-4 flex items-center"
+                                            >
+                                                {/* Active Line Indicator */}
+                                                <div className="w-12 h-px bg-slate-800 mr-6 relative overflow-hidden transition-colors duration-500">
+                                                    {isActive && (
+                                                        <motion.div
+                                                            layoutId="active-line"
+                                                            className="absolute inset-0 bg-blue-500"
+                                                            initial={false}
+                                                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                                        />
+                                                    )}
+                                                </div>
+
+                                                <div className="flex flex-col flex-1">
+                                                    <div className="flex items-center gap-4 mb-1">
+                                                        <span className={`font-mono text-sm transition-colors duration-500 ${isActive ? 'text-blue-500' : 'text-slate-600'}`}>
+                                                            {project.id}
+                                                        </span>
+                                                        <span className={`text-xs uppercase tracking-widest font-semibold transition-colors duration-500 ${isActive ? 'text-slate-400' : 'text-slate-700'}`}>
+                                                            {project.subtitle}
+                                                        </span>
+                                                    </div>
+
+                                                    <h3 className={`text-4xl lg:text-5xl font-bold tracking-tighter transition-all duration-500 ${isActive ? 'text-white translate-x-2' : 'text-slate-500 group-hover:text-slate-300'
+                                                        }`}>
+                                                        {project.title}
+                                                    </h3>
+                                                </div>
+                                            </button>
+                                        </motion.div>
+                                    );
+                                })}
+                            </div>
+
+                            {/* Down Arrow */}
+                            <motion.button
+                                whileHover={{ scale: 1.2 }}
+                                whileTap={{ scale: 0.9 }}
+                                onClick={() => scroll("down")}
+                                className="mt-2 p-1 text-slate-600 hover:text-blue-500 transition-colors"
+                                aria-label="Scroll Down"
+                            >
+                                <ChevronDown className="w-6 h-6" />
+                            </motion.button>
+                        </div>
                     </div>
 
                     {/* RIGHT PANE: Monitor Display Details */}
