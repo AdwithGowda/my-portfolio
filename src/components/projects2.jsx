@@ -7,19 +7,19 @@ import { ArrowUpRight, ChevronUp, ChevronDown } from "lucide-react";
 const projects = [
     {
         id: "01",
-        title: "Agriculture Web App",
-        subtitle: "Plant Disease Detection",
+        title: "AgriConnect",
+        subtitle: "Agriculture Web App",
         desc: "Built a platform for farmers to detect plant diseases using image input. Integrated government schemes and crop growth insights.",
         link: "https://your-project-url-1.com",
         image: "/assets/agri.jpg",
     },
     {
         id: "02",
-        title: "Quiz Web App",
-        subtitle: "Score Tracking & Results",
-        desc: "Developed a quiz application with score tracking and instant result display. Implemented user interaction and session-based scoring logic.",
-        link: "https://your-project-url-2.com",
-        image: "/assets/quiz.png",
+        title: "ShareHub",
+        subtitle: "Neighbourhood Asset Sharing Platform",
+        desc: "A full-stack P2P rental platform using React, Django REST Framework, and PostgreSQL, utilizing a state-driven engine and digital escrow wallet to securely automate rental lifecycles and ledger entries.",
+        link: "https://sharehub-front.onrender.com/",
+        image: "/assets/dashboard-01.png",
     },
     {
         id: "03",
